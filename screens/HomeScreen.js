@@ -19,7 +19,7 @@ const HomeScreen = () => {
 	useLayoutEffect(() => {
 		navigate.setOptions({
 			headerShown: true,
-			title: 'Booking.com',
+			title: 'Book',
 			headerTitleStyle: {
 				fontSize: 20,
 				fontWeight: 'bold',
@@ -142,7 +142,7 @@ const HomeScreen = () => {
 						</Text>
 					</Pressable>
 				</View>
-                <Text style={{marginHorizontal:20, fontSize:17, fontWeight:"500"}}>Travel more spend less</Text>
+                <Text style={{marginHorizontal:20, fontSize:17, fontWeight:"500", marginVertical:15}}>Travel more spend less</Text>
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                     <Pressable style={{width:200, height:150, marginTop:10,  borderColor:"#E0E0E0",borderWidth:2, borderRadius:15, padding:10, marginHorizontal:10}}>
                         <Text style={{ fontSize:15, fontWeight:"bold", marginVertical:7}}>Genius</Text>
