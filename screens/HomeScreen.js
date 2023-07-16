@@ -1,6 +1,6 @@
-import { Button, Pressable, ScrollView, StyleSheet, Text, TextInput, View} from 'react-native';
+import { Button, Pressable, ScrollView, StyleSheet, Text, TextInput, View, Alert} from 'react-native';
 import React, { useLayoutEffect, useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { Header } from '../components';
 import { Feather } from '@expo/vector-icons';
@@ -9,15 +9,16 @@ import DatePicker from 'react-native-date-ranges';
 import { BottomModal, ModalFooter,ModalButton, ModalTitle,SlideAnimation,ModalContent } from 'react-native-modals';
 
 const HomeScreen = () => {
-	const navigate = useNavigation();
+	const navigation = useNavigation();
 	const [ selectedDates, setSelectedDates ] = useState();
+    const route = useRoute();
 	const [ room, setRoom ] = useState(1);
 	const [ adults, setAdults ] = useState(2);
 	const [ children, setChildren ] = useState(0);
 	const [ modalVisible, setModalVisible ] = useState(false);
 	console.log(selectedDates);
 	useLayoutEffect(() => {
-		navigate.setOptions({
+		navigation.setOptions({
 			headerShown: true,
 			title: 'Book',
 			headerTitleStyle: {
@@ -49,6 +50,34 @@ const HomeScreen = () => {
 			/>
 		);
 	};
+
+	const searchPlaces = (place) => {
+		if(!route.params || !selectedDates){
+		  Alert.alert(
+			"Invalid Details",
+			"Please enter all the details",
+			[
+			  {
+				text: "Cancel",
+				onPress: () => console.log("Cancel Pressed"),
+				style: "cancel"
+			  },
+			  { text: "OK", onPress: () => console.log("OK Pressed") }
+			],
+			{ cancelable: false }
+		  );
+		}
+	
+		if(route.params && selectedDates){
+		  navigation.navigate("Places",{
+			rooms:room,
+			adults:adults,
+			children:children,
+			selectedDates:selectedDates,
+			place:place
+		  })
+		}
+	  };
 	return (
         <>
 		<View>
@@ -57,6 +86,7 @@ const HomeScreen = () => {
 				<View style={{ margin: 20, borderColor: '#FFC72C', borderWidth: 3, borderRadius: 6 }}>
 					{/*Destination */}
 					<Pressable
+                    onPress={()=>navigation.navigate("Search")}
 						style={{
 							flexDirection: 'row',
 							alignItems: 'center',
@@ -68,7 +98,7 @@ const HomeScreen = () => {
 						}}
 					>
 						<Feather name="search" size={24} color="black" />
-						<TextInput placeholderTextColor="black" placeholder="Enter your Destination" />
+						<TextInput placeholderTextColor="black" placeholder={ route?.params ? route.params.input : "Enter Your Destination"} />
 					</Pressable>
 					{/*selected dates */}
 					<Pressable
@@ -107,7 +137,7 @@ const HomeScreen = () => {
 							customButton={(onConfirm) => customButton(onConfirm)}
 							onConfirm={(startDate, endDate) => setSelectedDates(startDate, endDate)}
 							allowFontScaling={false} // optional
-							placeholder={'Apr 27, 2018 → Jul 10, 2018'}
+							placeholder={'Select date'}
 							mode={'range'}
 						/>
 					</Pressable>
@@ -129,6 +159,7 @@ const HomeScreen = () => {
 					</Pressable>
 					{/* search */}
 					<Pressable
+                    onPress={()=>searchPlaces(route?.params.input)}
 						style={{
 							paddingHorizontal: 10,
 							borderColor: '#FFC72C',

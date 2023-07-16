@@ -2,9 +2,10 @@ import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { BookingScreen, HomeScreen, ProfileScreen, SaveScreen } from './screens';
+import { BookingScreen, HomeScreen, ProfileScreen, SaveScreen, SearchScreen, UserScreen } from './screens';
 import { Entypo, AntDesign, Ionicons, FontAwesome } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
+import PlacesScreen from './screens/PlacesScreen';
 
 const StackNavigator = () => {
 	const Tab = createBottomTabNavigator();
@@ -63,7 +64,7 @@ const StackNavigator = () => {
 						headerShown: false,
 						tabBarIcon: ({ focused }) =>
 							focused ? (
-								<FontAwesome name="user" size={24} color="#003580" />
+								<FontAwesome name="user" size={27} color="#003580" />
 							) : (
 								<FontAwesome name="user-o" size={24} color="black" />
 							)
@@ -77,6 +78,9 @@ const StackNavigator = () => {
 		<NavigationContainer>
 			<Stack.Navigator>
 				<Stack.Screen name="Main" component={BottomTabs} options={{ headerShown: false }} />
+				<Stack.Screen name="Search" component={SearchScreen} options={{ headerShown: false }} />
+				<Stack.Screen name="Places" component={PlacesScreen} />
+				<Stack.Screen name="User" component={UserScreen} options={{ headerShown: false }} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	);
