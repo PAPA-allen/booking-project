@@ -12,7 +12,7 @@ const HomeScreen = () => {
 	const navigation = useNavigation();
 	const [ selectedDates, setSelectedDates ] = useState();
     const route = useRoute();
-	const [ room, setRoom ] = useState(1);
+	const [ rooms, setRooms ] = useState(1);
 	const [ adults, setAdults ] = useState(2);
 	const [ children, setChildren ] = useState(0);
 	const [ modalVisible, setModalVisible ] = useState(false);
@@ -70,7 +70,7 @@ const HomeScreen = () => {
 	
 		if(route.params && selectedDates){
 		  navigation.navigate("Places",{
-			rooms:room,
+			rooms:rooms,
 			adults:adults,
 			children:children,
 			selectedDates:selectedDates,
@@ -155,7 +155,7 @@ const HomeScreen = () => {
 						}}
 					>
 						<FontAwesome name="user-o" size={24} color="black" />
-						<TextInput placeholderTextColor="red" placeholder={`${room} room - ${adults} Adults - ${children} children`} />
+						<TextInput placeholderTextColor="red" placeholder={`${rooms} room - ${adults} Adults - ${children} children`} />
 					</Pressable>
 					{/* search */}
 					<Pressable
@@ -211,9 +211,9 @@ const HomeScreen = () => {
                 <Text style={{textAlign:"center", fontSize:20, fontWeight:"600",paddingHorizontal:6}}>-</Text>
             </Pressable>
             <Pressable>
-                <Text>{room}</Text>
+                <Text>{rooms}</Text>
             </Pressable>
-            <Pressable onPress={()=>setRoom((e)=>e+1)} style={{width:26, height:26 ,borderRadius:13, borderColor:"#8EBEBE", backgroundColor:"#E0E0E0"}}>
+            <Pressable onPress={()=>setRooms((e)=>e+1)} style={{width:26, height:26 ,borderRadius:13, borderColor:"#8EBEBE", backgroundColor:"#E0E0E0"}}>
             <Text style={{textAlign:"center", fontSize:20, fontWeight:"500", paddingHorizontal:6}}>+</Text>
             </Pressable>
             </Pressable>

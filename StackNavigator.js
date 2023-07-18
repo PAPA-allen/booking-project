@@ -6,6 +6,12 @@ import { BookingScreen, HomeScreen, ProfileScreen, SaveScreen, SearchScreen, Use
 import { Entypo, AntDesign, Ionicons, FontAwesome } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import PlacesScreen from './screens/PlacesScreen';
+import MapScreens from './screens/MapScreens';
+import PropertyInfoScreen from './screens/PropertyInfoScreen';
+import RoomScreen from './screens/RoomScreen';
+import ConfirmationScreen from './screens/ConfirmationScreen';
+import LoginScreens from './screens/LoginScreens';
+import RegisterScreen from './screens/RegisterScreen';
 
 const StackNavigator = () => {
 	const Tab = createBottomTabNavigator();
@@ -77,10 +83,16 @@ const StackNavigator = () => {
 	return (
 		<NavigationContainer>
 			<Stack.Navigator>
+				<Stack.Screen name="Login" component={LoginScreens} options={{ headerShown: false }} />
+				<Stack.Screen name="Register" component={RegisterScreen} options={{ headerShown: false }} />
 				<Stack.Screen name="Main" component={BottomTabs} options={{ headerShown: false }} />
 				<Stack.Screen name="Search" component={SearchScreen} options={{ headerShown: false }} />
 				<Stack.Screen name="Places" component={PlacesScreen} />
-				<Stack.Screen name="User" component={UserScreen} options={{ headerShown: false }} />
+				<Stack.Screen name="Map" component={MapScreens} options={{ headerShown: false }} />
+				<Stack.Screen name="Info" component={PropertyInfoScreen} />
+				<Stack.Screen name="Rooms" component={RoomScreen} />
+				<Stack.Screen name="User" component={UserScreen} />
+				<Stack.Screen name="Confirmation" component={ConfirmationScreen} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	);
