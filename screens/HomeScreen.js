@@ -154,7 +154,7 @@ const HomeScreen = () => {
 							paddingVertical: 15
 						}}
 					>
-						<FontAwesome name="user-o" size={24} color="black" />
+						<FontAwesome name="user-o" size={24} color={"black"} />
 						<TextInput placeholderTextColor="red" placeholder={`${rooms} room - ${adults} Adults - ${children} children`} />
 					</Pressable>
 					{/* search */}

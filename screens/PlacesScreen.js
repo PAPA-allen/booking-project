@@ -500,6 +500,7 @@ const PlacesScreen = () => {
         filter: "cost:High to Low",
       },
     ];
+    
     const searchPlaces = data?.filter((item) => item.place === route.params.place);
     const [sortedData,setSortedData] = useState(data);
     console.log(searchPlaces)
