@@ -39,7 +39,7 @@ const StackNavigator = () => {
 					component={SaveScreen}
 					options={{
 						tabBarLabel: 'Saved',
-						headerShown: false,
+						headerShown: true,
 						tabBarIcon: ({ focused }) =>
 							focused ? (
 								<AntDesign name="heart" size={24} color="#003580" />
@@ -67,7 +67,7 @@ const StackNavigator = () => {
 					component={ProfileScreen}
 					options={{
 						tabBarLabel: 'Profile',
-						headerShown: false,
+						headerShown: true,
 						tabBarIcon: ({ focused }) =>
 							focused ? (
 								<FontAwesome name="user" size={27} color="#003580" />
